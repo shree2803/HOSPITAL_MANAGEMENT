@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include"employee.h"
 //employee structure creation
 struct employee{
 	char name[30];
@@ -112,7 +112,7 @@ void retrievename(struct employee * head,char dname[30]){
 	return;
 	
 	
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -122,7 +122,8 @@ void retrievename(struct employee * head,char dname[30]){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return;}}
+	if (p==NULL){return;}*/
+}
 			
 //retrieveid function definition- To retrieve records using input id
 void retrieveid(struct employee * head,int did){
@@ -133,11 +134,11 @@ void retrieveid(struct employee * head,int did){
 	while(fgets(buffer,1024, fp)){
 		strcpy(prev_str,buffer);
 
-		int * value = strtok(buffer, ", ");
+		int * value = (int *)strtok(buffer, ", ");
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value==did)
+			if(i==0 && *value==did)
 			{
 				fl=1;
 				break;
@@ -149,7 +150,7 @@ void retrieveid(struct employee * head,int did){
 			break;
 		
 	}
-	int * value = strtok(prev_str, ", ");
+	int * value = (int*)strtok(prev_str, ", ");
 	
 	while (value) {
 		printf("%d ",value);
@@ -158,7 +159,7 @@ void retrieveid(struct employee * head,int did){
 	fclose(fp);
 	return;
 	
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -168,7 +169,8 @@ void retrieveid(struct employee * head,int did){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if(p==NULL){return;}}
+	if(p==NULL){return;}*/
+}
 
 //retrieveage function definition- To retrieve records using input age (Filters all records based on input) 
 void retrieveage(struct employee * head,int dage){
@@ -179,11 +181,11 @@ void retrieveage(struct employee * head,int dage){
 	while(fgets(buffer,1024, fp)){
 		strcpy(prev_str,buffer);
 
-		int * value = strtok(buffer, ", ");
+		int * value = (int *)strtok(buffer, ", ");
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value==dage)
+			if(i==0 && *value==dage)
 			{
 				fl=1;
 				break;
@@ -195,7 +197,7 @@ void retrieveage(struct employee * head,int dage){
 			break;
 		
 	}
-	int * value = strtok(prev_str, ", ");
+	int * value = (int*)strtok(prev_str, ", ");
 	
 	while (value) {
 		printf("%d ",value);
@@ -203,7 +205,7 @@ void retrieveage(struct employee * head,int dage){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -213,7 +215,7 @@ void retrieveage(struct employee * head,int dage){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return;}}
+	if (p==NULL){return;}*/}
 
 //retrievedob function definition - To retrieve records using input dob 
 void retrievedob(struct employee * head,int ddob){
@@ -224,11 +226,11 @@ void retrievedob(struct employee * head,int ddob){
 	while(fgets(buffer,1024, fp)){
 		strcpy(prev_str,buffer);
 
-		int* value = strtok(buffer, ", ");
+		int* value = (int*)strtok(buffer, ", ");
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value)==ddob)
+			if(i==0 && *value==ddob)
 			{
 				fl=1;
 				break;
@@ -240,15 +242,15 @@ void retrievedob(struct employee * head,int ddob){
 			break;
 		
 	}
-	int * value = strtok(prev_str, ", ");
+	int * value = (int*)strtok(prev_str, ", ");
 	
 	while (value) {
-		printf("%s ",value);
+		printf("%d ",value);
 		value = strtok(NULL, ", ");
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -258,7 +260,8 @@ void retrievedob(struct employee * head,int ddob){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return;}}
+	if (p==NULL){return;}*/
+}
 
 //retrievesex function definition - To retrieve records using input sex
 void retrievesex(struct employee * head,char dsex){
@@ -273,7 +276,7 @@ void retrievesex(struct employee * head,char dsex){
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value==dsex)
+			if(i==0 && *value==dsex)
 			{
 				fl=1;
 				break;
@@ -293,7 +296,7 @@ void retrievesex(struct employee * head,char dsex){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -303,7 +306,7 @@ void retrievesex(struct employee * head,char dsex){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if(p==NULL){return;}}
+	if(p==NULL){return;}*/}
 
 //retrievedept function definition - To retrieve records using input department 
 void retrievedept(struct employee * head,char ddept[30]){
@@ -338,7 +341,7 @@ void retrievedept(struct employee * head,char ddept[30]){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -348,7 +351,7 @@ void retrievedept(struct employee * head,char ddept[30]){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if(p==NULL){return;}}
+	if(p==NULL){return;}*/}
 
 //retrieveemail function definition - To retrieve records using input email id
 void retrieveemail(struct employee * head,char demail[30]){
@@ -383,7 +386,7 @@ void retrieveemail(struct employee * head,char demail[30]){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -393,7 +396,7 @@ void retrieveemail(struct employee * head,char demail[30]){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return;}}
+	if (p==NULL){return;}*/}
 
 //retrievesalary function definition - To retrieve records using input salary 
 void retrievesalary(struct employee* head,float dsalary){
@@ -404,11 +407,11 @@ void retrievesalary(struct employee* head,float dsalary){
 	while(fgets(buffer,1024, fp)){
 		strcpy(prev_str,buffer);
 
-		float * value = strtok(buffer, ", ");
+		float * value = (float*)strtok(buffer, ", ");
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value==dsalary)
+			if(i==0 && *value==dsalary)
 			{
 				fl=1;
 				break;
@@ -420,7 +423,7 @@ void retrievesalary(struct employee* head,float dsalary){
 			break;
 		
 	}
-	float * value = strtok(prev_str, ", ");
+	float * value = (float*)strtok(prev_str, ", ");
 	
 	while (value) {
 		printf("%.2f ",value);
@@ -428,7 +431,7 @@ void retrievesalary(struct employee* head,float dsalary){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int c=0;
 	while(p!=NULL){
@@ -438,7 +441,7 @@ void retrievesalary(struct employee* head,float dsalary){
 		p=p->link;}
 	if (p==NULL && c==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return;}}
+	if (p==NULL){return;}*/}
 
 //retrievephone function definition - To retrieve records using input phone
 void retrievephone(struct employee* head,long int dphone){
@@ -449,11 +452,11 @@ void retrievephone(struct employee* head,long int dphone){
 	while(fgets(buffer,1024, fp)){
 		strcpy(prev_str,buffer);
 
-		long int * value = strtok(buffer, ", ");
+		long int * value = (long int*)strtok(buffer, ", ");
 		int i=0;
 		int fl = 0;
 		while (value) {
-			if(i==0 && value==dphone)
+			if(i==0 && *value==dphone)
 			{
 				fl=1;
 				break;
@@ -465,7 +468,7 @@ void retrievephone(struct employee* head,long int dphone){
 			break;
 		
 	}
-	long int * value = strtok(prev_str, ", ");
+	long int * value = (long int*)strtok(prev_str, ", ");
 	
 	while (value) {
 		printf("%ld ",value);
@@ -473,7 +476,7 @@ void retrievephone(struct employee* head,long int dphone){
 	}
 	fclose(fp);
 	return;
-	struct employee *p;
+	/*struct employee *p;
 	p=head;
 	int count;
 	while(p!=NULL){
@@ -483,7 +486,8 @@ void retrievephone(struct employee* head,long int dphone){
 		p=p->link;}
 	if(p==NULL && count==0){
 		printf("\tNO RECORD FOUND\n");}
-	if (p==NULL){return ;}}
+	if (p==NULL){return ;}*/
+}
 
 //deletebyname function definition - To delete record using name
 struct employee * deletebyname(struct employee * head, char dname[30]){
