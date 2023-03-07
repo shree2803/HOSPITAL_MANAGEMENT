@@ -126,6 +126,38 @@ void retrievename(struct employee * head,char dname[30]){
 			
 //retrieveid function definition- To retrieve records using input id
 void retrieveid(struct employee * head,int did){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		int * value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value==did)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	int * value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%d ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
+	
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -140,6 +172,37 @@ void retrieveid(struct employee * head,int did){
 
 //retrieveage function definition- To retrieve records using input age (Filters all records based on input) 
 void retrieveage(struct employee * head,int dage){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		int * value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value==dage)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	int * value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%d ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -154,6 +217,37 @@ void retrieveage(struct employee * head,int dage){
 
 //retrievedob function definition - To retrieve records using input dob 
 void retrievedob(struct employee * head,int ddob){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		int* value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value)==ddob)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	int * value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%s ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -168,6 +262,37 @@ void retrievedob(struct employee * head,int ddob){
 
 //retrievesex function definition - To retrieve records using input sex
 void retrievesex(struct employee * head,char dsex){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		char* value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value==dsex)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	char* value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%c ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -182,6 +307,37 @@ void retrievesex(struct employee * head,char dsex){
 
 //retrievedept function definition - To retrieve records using input department 
 void retrievedept(struct employee * head,char ddept[30]){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		char* value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && strcmp(ddept,value)==0)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	char* value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%s ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -196,6 +352,37 @@ void retrievedept(struct employee * head,char ddept[30]){
 
 //retrieveemail function definition - To retrieve records using input email id
 void retrieveemail(struct employee * head,char demail[30]){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		char* value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && strcmp(demail,value)==0)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	char* value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%s ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -210,6 +397,37 @@ void retrieveemail(struct employee * head,char demail[30]){
 
 //retrievesalary function definition - To retrieve records using input salary 
 void retrievesalary(struct employee* head,float dsalary){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		float * value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value==dsalary)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	float * value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%.2f ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int c=0;
@@ -224,6 +442,37 @@ void retrievesalary(struct employee* head,float dsalary){
 
 //retrievephone function definition - To retrieve records using input phone
 void retrievephone(struct employee* head,long int dphone){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		long int * value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && value==dphone)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	long int * value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%ld ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
 	struct employee *p;
 	p=head;
 	int count;
