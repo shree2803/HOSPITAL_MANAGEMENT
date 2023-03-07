@@ -17,6 +17,14 @@ struct employee{
 
 //insertemployee function definition
 struct employee * insertemployee(struct employee * head,struct employee *ptr){
+	FILE* fp = fopen("ctmp.csv", "a+");
+	if (!fp) {
+        // Error in file opening
+        printf("Can't open file\n");
+        return 0;
+    }
+    fprintf(fp, "%s, %d, %d, %c, %d, %s,%f , %s, %ld \n", ptr->name,ptr->dob,ptr->id,ptr->sex,ptr->age,ptr->dept,ptr->salary,ptr->email,ptr->phone );
+	fclose(fp);
 	struct employee * temp2;
 	temp2=(struct employee *)malloc(sizeof(struct employee));
 	if (head==NULL){
@@ -32,24 +40,42 @@ struct employee * insertemployee(struct employee * head,struct employee *ptr){
 	if (head->link==NULL){
 		head->link=ptr;
 		ptr->link=NULL;
-		return head;}}
+		return head;}
+
+	// Saving data in file
+}
 
 //print function definition
 void print(struct employee *head){
-	struct employee * temp;
-	if (head==NULL){
-		printf("NO RECORD PRESENT");
-		return;}
-	temp=head;
-	if (head!=NULL){
-		printf("\t\t\t\t\t\tEMPLOYEE DATABASE\n\n\n");
-		printf("\tID\t\t\tNAME\t\t\tDOB\t\tAGE\t\tSEX\t\t\tDEPARTMENT\t\tSALARY\t\t\tEMAIL-ID\t\tPHONE NUMBER\t\t\n");
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024];
+
+	while(fgets(buffer,1024, fp)){
+		char* value = strtok(buffer, ", ");
+		while (value) {
+			printf("%s ",value);
+			value = strtok(NULL, ", ");
+		}
 		printf("\n");
-		while(temp->link!=NULL){
-			printf("\t%d\t\t\t%s\t\t\t%d\t\t%d\t\t%c\t\t\t%s\t\t%.2f\t\t\t%s\t\t%ld\n",temp->id,temp->name,temp->dob,temp->age,temp->sex,temp->dept,temp->salary,temp->email,temp->phone);
-			temp=temp->link;}
-		printf("\t%d\t\t\t%s\t\t%d\t\t%d\t\t%c\t\t\t%s\t\t%.2f\t\t\t%s\t\t%ld\n",temp->id,temp->name,temp->dob,temp->age,temp->sex,temp->dept,temp->salary,temp->email,temp->phone);
-		printf("\n\n");}}
+	}
+	fclose(fp);
+	// struct employee * temp;
+
+	// if (head==NULL){
+	// 	printf("NO RECORD PRESENT");
+	// 	return;}
+	// temp=head;
+	// if (head!=NULL){
+	// 	printf("\t\t\t\t\t\tEMPLOYEE DATABASE\n\n\n");
+	// 	printf("\tID\t\t\tNAME\t\t\tDOB\t\tAGE\t\tSEX\t\t\tDEPARTMENT\t\tSALARY\t\t\tEMAIL-ID\t\tPHONE NUMBER\t\t\n");
+	// 	printf("\n");
+	// 	while(temp->link!=NULL){
+	// 		printf("\t%d\t\t\t%s\t\t\t%d\t\t%d\t\t%c\t\t\t%s\t\t%.2f\t\t\t%s\t\t%ld\n",temp->id,temp->name,temp->dob,temp->age,temp->sex,temp->dept,temp->salary,temp->email,temp->phone);
+	// 		temp=temp->link;}
+	// 	printf("\t%d\t\t\t%s\t\t%d\t\t%d\t\t%c\t\t\t%s\t\t%.2f\t\t\t%s\t\t%ld\n",temp->id,temp->name,temp->dob,temp->age,temp->sex,temp->dept,temp->salary,temp->email,temp->phone);
+	// printf("\n\n");}
+		
+}	
 
 //retrievename function definition- To retrieve records using input name
 void retrievename(struct employee * head,char dname[30]){
