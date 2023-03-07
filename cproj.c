@@ -79,6 +79,39 @@ void print(struct employee *head){
 
 //retrievename function definition- To retrieve records using input name
 void retrievename(struct employee * head,char dname[30]){
+	FILE* fp=fopen("ctmp.csv","r");
+	char buffer[1024],prev_str[1024]="";
+
+	
+	while(fgets(buffer,1024, fp)){
+		strcpy(prev_str,buffer);
+
+		char* value = strtok(buffer, ", ");
+		int i=0;
+		int fl = 0;
+		while (value) {
+			if(i==0 && strcmp(dname,value)==0)
+			{
+				fl=1;
+				break;
+			}
+			i++;
+			value = strtok(NULL, ", ");
+		}
+		if(fl)
+			break;
+		
+	}
+	char* value = strtok(prev_str, ", ");
+	
+	while (value) {
+		printf("%s ",value);
+		value = strtok(NULL, ", ");
+	}
+	fclose(fp);
+	return;
+	
+	
 	struct employee *p;
 	p=head;
 	int c=0;
