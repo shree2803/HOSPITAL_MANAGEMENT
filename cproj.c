@@ -17,14 +17,15 @@ struct employee{
 
 //insertemployee function definition
 struct employee * insertemployee(struct employee * head,struct employee *ptr){
-	FILE* fp = fopen("ctmp.csv", "a+");
-	if (!fp) {
-        // Error in file opening
+	FILE *file = fopen("emp.dat", "ab");
+	if (!file) {
         printf("Can't open file\n");
         return 0;
     }
-    fprintf(fp, "%s, %d, %d, %c, %d, %s,%f , %s, %ld \n", ptr->name,ptr->dob,ptr->id,ptr->sex,ptr->age,ptr->dept,ptr->salary,ptr->email,ptr->phone );
-	fclose(fp);
+	fwrite(&ptr, sizeof(struct employee), 1, file);	
+	fclose(file);
+	return NULL;
+
 	struct employee * temp2;
 	temp2=(struct employee *)malloc(sizeof(struct employee));
 	if (head==NULL){
@@ -47,18 +48,16 @@ struct employee * insertemployee(struct employee * head,struct employee *ptr){
 
 //print function definition
 void print(struct employee *head){
-	FILE* fp=fopen("ctmp.csv","r");
-	char buffer[1024];
+	struct employee temp;
+    int count = 0;
+    FILE *file = fopen("emp.dat", "rb");
+    if (file != NULL) {
+        while (fread(&temp, sizeof(struct employee), 1, file)) {
+			printf("\t%d\t\t\t%s\t\t%d\t\t%d\t\t%c\t\t\t%s\t\t%.2f\t\t\t%s\t\t%ld\n",temp.id,temp.name,temp.dob,temp.age,temp.sex,temp.dept,temp.salary,temp.email,temp.phone);
 
-	while(fgets(buffer,1024, fp)){
-		char* value = strtok(buffer, ", ");
-		while (value) {
-			printf("%s ",value);
-			value = strtok(NULL, ", ");
-		}
-		printf("\n");
-	}
-	fclose(fp);
+        }
+        fclose(file);
+    }
 	// struct employee * temp;
 
 	// if (head==NULL){
@@ -92,22 +91,25 @@ void retrievename(struct employee * head,char dname[30]){
 		while (value) {
 			if(i==0 && strcmp(dname,value)==0)
 			{
-				fl=1;
-				break;
+				char* print_val = strtok(prev_str, ", ");
+	
+				while (print_val) {
+					printf("%s ",value);
+					print_val = strtok(NULL, ", ");
+				}
 			}
 			i++;
 			value = strtok(NULL, ", ");
 		}
-		if(fl)
-			break;
+		
 		
 	}
-	char* value = strtok(prev_str, ", ");
+	// char* print_val = strtok(prev_str, ", ");
 	
-	while (value) {
-		printf("%s ",value);
-		value = strtok(NULL, ", ");
-	}
+	// while (print_val) {
+	// 	printf("%s ",value);
+	// 	print_val = strtok(NULL, ", ");
+	// }
 	fclose(fp);
 	return;
 	
